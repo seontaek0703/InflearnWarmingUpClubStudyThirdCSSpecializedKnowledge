@@ -70,10 +70,10 @@
     코드를 작성할 때 괄호 등의 문법 검사를 진행할 때. { ( ) }.
 
     스택의 추상 자료형
-    1. 데이터 삽입 push
-    2. 데이터 제거 pop
-    3. 데이터 참조 peek
-    4. 데이터 존재 여부 확인 isEmpty
+    1. 데이터 삽입              push
+    2. 데이터 제거              pop
+    3. 데이터 참조              peek
+    4. 데이터 존재 여부 확인    isEmpty
 
 ✅ 큐(Queue): First In - First Out(FIFO)의 아주 단순한 규칙을 가진 리스트. 스택과 반대의 경향을 가짐.
 
@@ -83,10 +83,20 @@
     큐를 처리하기 위해 단방향 노드를 양방향 노드로. 즉, 이중연결리스트로 처리해야함.
 
     큐의 추상 자료형
-    1. 데이터 삽입 enqueue
-    2. 데이터 제거 dequeue
-    3. 데이터 참조 front
-    4. 데이터 존재 여부 확인 isEmpty
+    1. 데이터 삽입             enqueue
+    2. 데이터 제거             dequeue
+    3. 데이터 참조             front
+    4. 데이터 존재 여부 확인    isEmpty
+
+✅ 덱(Deque): 데이터의 삽입/삭제를 head와 tail에서 자유롭게 사용할 수 있음
+
+    덱의 추상 자료형
+    1. 모든 데이터 출력                printAll
+    2. head에 데이터 삽입              addFirst
+    3. head에서 데이터 제거            removeFirst
+    4. tail에 데이터 삽입              addLast
+    5. tail에서 데이터 제거            removeLast
+    6. 리스트에 데이터 존재유무 확인    isEmpty
 
 ### 🗓️ Day4(06 Mar, 2025) 자료구조: CPU 스케줄링
 ### 🗓️ Day5(07 Mar, 2025) 자료구조: CPU 스케줄링

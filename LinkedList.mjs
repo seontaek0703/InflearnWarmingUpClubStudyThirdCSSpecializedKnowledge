@@ -76,20 +76,20 @@ class LinkedList {
 
         if(index == 0){
             // head에 위치한 데이터를 삭제하는 경우
-        let deleteNode = this.head;
-        this.head = this.head.next;
-        this.count--;
-        return deleteNode;
+            let deletedNode = this.head;
+            this.head = this.head.next;
+            this.count--;
+            return deletedNode;
         } else {
             // head가 아닌 나머지 위치에 데이터를 삭제하는 경우
             for(let i = 0; i < index - 1; i++) {
                 currentNode = currentNode.next;
             }
 
-            let deleteNode = currentNode;
+            let deletedNode = currentNode.next;
             currentNode.next = currentNode.next.next;
             this.count--;
-            return deleteNode;
+            return deletedNode;
         }
     }
 

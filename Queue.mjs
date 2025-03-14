@@ -1,6 +1,6 @@
 import { DoublyLinkedList } from './DoublyLinkedList.mjs';
 
-class Queue {
+class Queue{
     constructor() {
         this.list = new DoublyLinkedList();
     }

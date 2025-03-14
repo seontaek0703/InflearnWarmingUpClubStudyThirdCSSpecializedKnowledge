@@ -18,7 +18,6 @@ class DoublyLinkedList {
         let text = "[";
 
         while(currentNode != null) {
-            // console.log(currentNode.data);
             text += currentNode.data;
             currentNode = currentNode.next;
 
@@ -31,14 +30,12 @@ class DoublyLinkedList {
         console.log(text);
     }
 
-    // 리스트의 모든 원소를 제거하는 기능
     clear() {
         this.head = null;
         this.count = 0;
     }
 
     insertAt(index, data) {
-        // index가 크기를 초과하거나 음수를 가르키는 경우
         if(index > this.count || index < 0) {
             throw new Error("범위를 넘어갔습니다.");
         }
@@ -46,20 +43,21 @@ class DoublyLinkedList {
         let newNode = new Node(data);
 
         if(index == 0) {
-            // 데이터가 head에 삽입되는 경우
+            // 헤드에 삽입하는 경우 Open
             newNode.next = this.head;
             if(this.head != null) {
-                // head가 null일 때 에러가 나지 않기 위한 if if
                 this.head.prev = newNode;
             }
             this.head = newNode;
+            // 헤드에 삽입하는 경우 Close
         } else if (index == this.count) {
-            // tail에 삽입하는 경우를 위한 else if
+            // tail에 삽입하는 경우 Open
             newNode.next = null;
             newNode.prev = this.tail;
             this.tail.next = newNode;
+            // tail에 삽입하는 경우 Close
         } else {
-            // 데이터가 head가 아닌 나머지 위치에 삽입되는 경우
+            // 헤드 외에 삽입하는 경우 Open
             let currentNode = this.head;
 
             for(let i = 0; i < index - 1; i++) {
@@ -67,60 +65,60 @@ class DoublyLinkedList {
             }
 
             newNode.next = currentNode.next;
-            currentNode.prev = currentNode;
+            newNode.prev = currentNode;
             currentNode.next = newNode;
             newNode.next.prev = newNode;
+            // 헤드 외에 삽입하는 경우 Close
         }
 
-        if (newNode.next = null) {
+        if(newNode.next == null) {
             this.tail = newNode;
         }
         this.count++;
     }
 
-    // 리스트의 마지막에 데이터를 삽입하는 경우
     insertLast(data) {
         this.insertAt(this.count, data);
     }
 
     deleteAt(index) {
-        // index가 크기를 초과하거나 음수를 가르키는 경우
         if(index >= this.count || index < 0) {
             throw new Error("제거할 수 없습니다.");
         }
 
         let currentNode = this.head;
+
         if(index == 0){
-            // head에 위치한 데이터를 삭제하는 경우
-        let deleteNode = this.head;
-        if(this.head.next == null) {
-            // 데이터가 한 개 일 때
-            this.head = null;
-            this.tail = null;
-        } else {
-            // 데이터가 두 개 이상일 때
-            this.head = this.head.next;
-            this.head.prev = null;
-        }
-        this.count--;
-        return deleteNode;
-        } else if (index == this.count - 1) {
-            // 마지막 노드를 제거하는 경우
-            let deleteNode = this.tail;
+            let deletedNode = this.head;
+            if(this.head.next == null) {
+                // 데이터가 하나만 남은 경우 Open
+                this.head = null;
+                this.tail = null;
+            } else {
+                // 데이터가 두 개 이상 남은 경우 Open
+                this.head = this.head.next;
+                this.head.prev = null;
+            }
+            this.count--;
+            return deletedNode;
+        } else if (index == this.count -1) {
+            // 마지막 노드를 제거하는 경우 Open
+            let deletedNode = this.tail;
             this.tail.prev.next = null;
             this.tail = this.tail.prev;
             this.count--;
+            return deletedNode;
         } else {
-            // head와 tail이 아닌 나머지 위치에 데이터를 삭제하는 경우
+            // head와 tail이 아닌 노드를 제거하는 경우 Open
             for(let i = 0; i < index - 1; i++) {
                 currentNode = currentNode.next;
             }
 
-            let deleteNode = currentNode;
+            let deletedNode = currentNode.next;
             currentNode.next = currentNode.next.next;
             currentNode.next.prev = currentNode;
             this.count--;
-            return deleteNode;
+            return deletedNode;
         }
     }
 
@@ -129,7 +127,6 @@ class DoublyLinkedList {
     }
 
     getNodeAt(index) {
-        // index가 크기를 초과하거나 음수를 가르키는 경우
         if(index >= this.count || index < 0) {
             throw new Error("범위를 넘어갔습니다.");
         }
